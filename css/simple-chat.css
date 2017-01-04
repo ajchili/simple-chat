@@ -1,0 +1,37 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    min-width: 600px;
+    background-color: #03A9F4;
+}
+
+.login {
+    margin-top: 15%;
+    margin-left: 25%;
+    margin-right: 25%;
+    width: 50%;
+}
+
+.login > h1, p {
+    text-align: center;
+}
+
+.login-inputs .login-buttons  {
+    margin-left: 10%;
+    margin-right: 10%;
+    width: 80%;
+}
+
+.login-inputs > input {
+    width: 100%;
+}
+
+.login-buttons > button {
+    margin-left: 5%;
+    margin-right: 5%;
+    width: 40%;
+    float: left;
+}
