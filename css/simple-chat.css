@@ -15,11 +15,28 @@ body {
     width: 50%;
 }
 
+.signup {
+    margin-top: 15%;
+    margin-left: 25%;
+    margin-right: 25%;
+    width: 50%;
+}
+
 .login > h1, p {
     text-align: center;
 }
 
-.login-inputs .login-buttons  {
+.signup > h1, p {
+    text-align: center;
+}
+
+.login-inputs .login-buttons {
+    margin-left: 10%;
+    margin-right: 10%;
+    width: 80%;
+}
+
+.signup-inputs .signup-buttons {
     margin-left: 10%;
     margin-right: 10%;
     width: 80%;
@@ -29,7 +46,18 @@ body {
     width: 100%;
 }
 
+.signup-inputs > input {
+    width: 100%;
+}
+
 .login-buttons > button {
+    margin-left: 5%;
+    margin-right: 5%;
+    width: 40%;
+    float: left;
+}
+
+.signup-buttons > button {
     margin-left: 5%;
     margin-right: 5%;
     width: 40%;

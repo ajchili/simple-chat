@@ -3,7 +3,7 @@
 <head>
 
   <meta charset="utf-8">
-  <title>simple-chat // login</title>
+  <title>simple-chat // signup</title>
   <meta name="description" content="a quick and easy communication platform">
   <meta name="author" content="Kirin Patel">
 
@@ -19,18 +19,20 @@
 
 </head>
 <body>
-    <div class="login">
+    <div class="signup">
         <h1>simple-chat</h1>
-        <p>a quick and easy communication platform</p>
+        <p>create an account</p>
         
-        <div class="login-inputs">
+        <div class="signup-inputs">
+            <input id="name" type="text" placeholder="name" />
             <input id="email" type="text" placeholder="email" />
             <input id="password" type="password" placeholder="password" />
+            <input id="password_verification" type="password" placeholder="confirm password" />
         </div>
         
-        <div class="login-buttons">
-            <button onclick="login();">login</button>
-            <button onclick="goToSignup();">signup</button>
+        <div class="signup-buttons">
+            <button onclick="signup();">signup</button>
+            <button onclick="returnToLogin();">back</button>
         </div>
     </div>
     
