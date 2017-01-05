@@ -15,8 +15,8 @@ function verifyAuth() {
 }
 
 function login() {
-    var email = $("#email").val();
-    var pass = $("#password").val();
+    var email = $('#email').val();
+    var pass = $('#password').val();
     
     if (email.length === 0) {
         alert("please enter all information");
@@ -40,10 +40,10 @@ function login() {
 }
 
 function signup() {
-    var name = $("#name").val();
-    var email = $("#email").val();
-    var pass = $("#password").val();
-    var pass_v = $("#password_verification").val();
+    var name = $('#name').val();
+    var email = $('#email').val();
+    var pass = $('#password').val();
+    var pass_v = $('#password_verification').val();
     
     if (name.length === 0 || email.length === 0 || pass.length === 0 || pass_v.length === 0) {
         alert("please enter all fields");
@@ -54,7 +54,13 @@ function signup() {
             var user = firebase.auth().currentUser;
 
             user.updateProfile({
-                displayName: name
+                displayName: $('#name').val()
+            }).then(function() {
+                firebase.database().ref('users/' + uid).set({
+                    username: uid
+                })
+            }, function(error) {
+
             });
             
             verifyAuth();
@@ -78,15 +84,51 @@ function loadHome() {
 
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-            if (user.displayName === "") {
-                $('#welcome').text("hello " + user.displayName);
-            }
+            $('#welcome').text("hello " + user.displayName);
         }
     });
 }
 
 function loadSettings() {
+    var user = firebase.auth().currentUser;
+
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            $('#name').val(user.displayName);
+            $('#email').val(user.email);
+            
+            firebase.database().ref('users/' + user.uid).once('value').then(function(snapshot) {
+                if (snapshot.child('username').val() !== user.uid) {
+                    $('#username').val(snapshot.child('username').val());
+                } else { 
+                    $('#username').val(user.uid);
+                }
+            });   
+        }
+    });
+}
+
+function saveSettings() {
+    var user = firebase.auth().currentUser;
+
+    user.updateProfile({
+        displayName: $('#name').val()
+    }).then(function() {
+        
+    }, function(error) {
+        
+    });
     
+    if ($('#username').val() !== "") {
+        firebase.database().ref('users/' + user.uid).update({
+            username: $('#username').val()
+        });
+    } else {
+        firebase.database().ref('users/' + user.uid).update({
+            username: user.uid
+        });
+        $('#username').val(user.uid)
+    }
 }
 
 function goToSignup() {
@@ -118,5 +160,25 @@ function signOut() {
         returnToLogin();
     }, function(error) {
         console.log(error);
+    });
+}
+
+function deleteUser() {
+    var user = firebase.auth().currentUser;
+
+    firebase.auth().onAuthStateChanged(function(user) {
+        var confirmation = prompt("please enter your email address to confirm deletion \n(" + user.email + ")", "");
+        if (confirmation === user.email) {
+            user.delete().then(function() {
+                firebase.database().ref('users/' + user.uid).remove();
+                verifyAuth();
+            }, function(error) {
+                alert(error);
+            });
+        }
+    }).then(function() {
+        
+    }, function(error) {
+        
     });
 }

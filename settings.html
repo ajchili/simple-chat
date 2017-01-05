@@ -18,6 +18,27 @@
 </head>
 <body onload="loadSettings();">
     
+    <div class="settings-header">
+        <div class="header-buttons">
+            <button onclick="verifyAuth();">back</button>
+            <button id="save" onclick="saveSettings();">save</button>
+        </div>
+        <h1>settings</h1>
+        <div class="firebase-input">
+            <input id="name" placeholder="name" type="text"/>
+            <input id="username" placeholder="username" type="text"/>
+            <input id="email" placeholder="email" type="text"/>
+            <input id="email_verification" placeholder="confirm new email" type="text"/>
+            <button>update email</button>
+            <div class="password">
+                <input id="password" placeholder="new password" type="password"/>
+                <input id="password_verification" placeholder="confirm password" type="password" />
+            </div>
+            <button>update password</button>
+            <button id="delete" onclick="deleteUser();">delete account</button>
+        </div>
+    </div>
+    
     <script src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js"></script>
     <script src="js/firebase.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
