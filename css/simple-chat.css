@@ -53,6 +53,10 @@ body {
     width: 80%;
 }
 
+.home-header > .header-buttons {
+    width: 100%;
+}
+
 .login-inputs > input {
     width: 100%;
 }
@@ -73,4 +77,8 @@ body {
     margin-right: 5%;
     width: 40%;
     float: left;
+}
+
+.home-header > .header-buttons > #settings {
+    float: right;
 }

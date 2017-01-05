@@ -73,6 +73,20 @@ function signup() {
 
 function loadHome() {
     verifyAuth();
+    
+    var user = firebase.auth().currentUser;
+
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            if (user.displayName !== "null") {
+                $('#welcome').text("hello " + user.displayName);
+            }
+        }
+    });
+}
+
+function loadSettings() {
+    
 }
 
 function goToSignup() {
@@ -81,6 +95,22 @@ function goToSignup() {
 
 function returnToLogin() {
     window.location.replace("./index.html");
+}
+
+function goToSettings() {
+    var user = firebase.auth().currentUser;
+    
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            if (!window.location.pathname.includes("/settings.html")) {
+                window.location.replace("./settings.html");
+            }
+        } else {
+            if (!window.location.pathname.includes("/index.html")) {
+                returnToLogin();
+            }
+        }
+    });
 }
 
 function signOut() {
