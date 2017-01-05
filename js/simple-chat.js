@@ -164,6 +164,40 @@ function signOut() {
     });
 }
 
+function changeEmail() {
+    var user = firebase.auth().currentUser;
+    
+    var email = $('#email').val();
+    var email_v = $('#email_verification').val();
+    
+    if (email === email_v) {
+        user.updateEmail(email_v).then(function() {
+            alert("email address changed")
+        }, function(error) {
+            alert(error.message);
+        });
+    } else {
+        alert("please make sure that the email address is the same in both fields");
+    }
+}
+
+function changePassword() {
+    var user = firebase.auth().currentUser;
+    
+    var pass = $('#password').val();
+    var pass_v = $('#password_verification').val();
+    
+    if (pass === pass_v) {
+        user.updatePassword(pass_v).then(function() {
+            alert("password changed")
+        }, function(error) {
+            alert(error.message);
+        });
+    } else {
+        alert("please make sure that the password is the same in both fields");
+    }
+}
+
 function deleteUser() {
     var user = firebase.auth().currentUser;
 
@@ -172,7 +206,7 @@ function deleteUser() {
         if (confirmation === user.email) {
             firebase.database().ref('users/' + user.uid).remove().then(function() {
                 user.delete().then(function() {
-                verifyAuth();
+                    verifyAuth();
                 });
             });
         }
