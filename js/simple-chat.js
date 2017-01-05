@@ -1,13 +1,17 @@
 function verifyAuth() {
     var user = firebase.auth().currentUser;
     
-    if (user !== null) {
-        window.location.replace("./home.html");
-    } else {
-        if (window.location.pathname !== "/index.html") {
-            returnToLogin();
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            if (!window.location.pathname.includes("/home.html")) {
+                window.location.replace("./home.html");
+            }
+        } else {
+            if (!window.location.pathname.includes("/index.html")) {
+                returnToLogin();
+            }
         }
-    }
+    });
 }
 
 function login() {
@@ -19,7 +23,18 @@ function login() {
     } else if (pass.length === 0) {
         alert("please enter all information");
     } else {
-        // Firebase login
+        firebase.auth().signInWithEmailAndPassword(email, pass).then(function(error) {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            
+            if (errorCode === "auth/wrong-password") {
+                alert("incorrect password");
+            } else if (errorCode === "auth/invalid-email") {
+                alert("account does not exist");
+            } 
+        });
+        
+        verifyAuth();
     }
     
 }
@@ -35,7 +50,24 @@ function signup() {
     } else if (pass !== pass_v) {
         alert("password does not match");
     } else {
-        // Firebase signup
+        firebase.auth().createUserWithEmailAndPassword(email, pass_v).then(function(user) {
+            var user = firebase.auth().currentUser;
+
+            user.updateProfile({
+                displayName: name
+            });
+            
+            verifyAuth();
+        }, function(error) {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            
+            if (errorCode === "auth/email-already-in-use") {
+                alert("email already in use");
+            } else if (errorCode === "auth/invalid-email") {
+                alert("account does not exist");
+            }
+        });
     }
 }
 
