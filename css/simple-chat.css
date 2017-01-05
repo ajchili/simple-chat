@@ -15,11 +15,11 @@ body {
     width: 50%;
 }
 
-.login > h1, p {
+.login > h1, .login > p {
     text-align: center;
 }
 
-.login-inputs .login-buttons {
+.login-inputs, .login-buttons {
     margin-left: 10%;
     margin-right: 10%;
     width: 80%;
@@ -43,25 +43,11 @@ body {
     width: 50%;
 }
 
-.signup > h1, p {
+.signup > h1, .signup > p {
     text-align: center;
 }
 
-.signup-inputs .signup-buttons {
-    margin-left: 10%;
-    margin-right: 10%;
-    width: 80%;
-}
-
-.home-header {
-    margin-top: 5%;
-    margin-left: 10%;
-    margin-right: 10%;
-    width: 80%;
-}
-
-.settings-header {
-    margin-top: 5%;
+.signup-inputs, .signup-buttons {
     margin-left: 10%;
     margin-right: 10%;
     width: 80%;
@@ -78,7 +64,15 @@ body {
     float: left;
 }
 
-.home-header > h1, p {
+.home-header {
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: 10%;
+    margin-right: 10%;
+    width: 80%;
+}
+
+.home-header > h1, .home-header > p {
     text-align: center;
 }
 
@@ -90,7 +84,53 @@ body {
     float: right;
 }
 
-.settings-header > h1, p {
+.home-messages {
+    margin-left: 10%;
+    margin-right: 10%;
+    width: 80%;
+}
+
+.home-messages > .messages-threads {
+    padding-right: 2.5%;
+    padding-bottom: 1%;
+    width: 30%;
+    float: left;
+    background-color: aliceblue;
+}
+
+.home-messages > .messages-threads > .thread > .subject {
+    padding: 0;
+    margin: 0;
+    margin-left: 2.5%;
+    margin-bottom: 1%;
+    text-align: left;
+    font-size: 1.2em;
+    overflow: hidden;
+}
+
+.home-messages > .messages-threads > .thread > p {
+    padding: 0;
+    margin: 0;
+    margin-left: 2.5%;
+    text-align: left;
+    font-size: 0.8em;
+    overflow: hidden;
+}
+
+.home-messages > .messages-conversation {
+    width: 67.5%;
+    float: left;
+    background-color: aliceblue;
+}
+
+.settings-header {
+    margin-top: 5%;
+    margin-left: 10%;
+    margin-right: 10%;
+    width: 80%;
+}
+
+.settings-header > h1, .settings-header > p {
     text-align: center;
 }
 
