@@ -56,14 +56,14 @@ function signup() {
             user.updateProfile({
                 displayName: $('#name').val()
             }).then(function() {
-                firebase.database().ref('users/' + uid).set({
-                    username: uid
-                })
+                firebase.database().ref('users/' + user.uid).update({
+                    username: user.uid
+                }).then(function() {
+                    verifyAuth();
+                });
             }, function(error) {
 
             });
-            
-            verifyAuth();
         }, function(error) {
             var errorCode = error.code;
             var errorMessage = error.message;
@@ -91,19 +91,20 @@ function loadHome() {
 
 function loadSettings() {
     var user = firebase.auth().currentUser;
-
+    
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             $('#name').val(user.displayName);
+            $('#username').val(user.uid);
             $('#email').val(user.email);
             
             firebase.database().ref('users/' + user.uid).once('value').then(function(snapshot) {
-                if (snapshot.child('username').val() !== user.uid) {
+                if (snapshot.child('username').val() !== user.uid && snapshot.child('username').val() !== null) {
                     $('#username').val(snapshot.child('username').val());
-                } else { 
-                    $('#username').val(user.uid);
                 }
             });   
+        } else {
+            returnToLogin();
         }
     });
 }
@@ -169,11 +170,10 @@ function deleteUser() {
     firebase.auth().onAuthStateChanged(function(user) {
         var confirmation = prompt("please enter your email address to confirm deletion \n(" + user.email + ")", "");
         if (confirmation === user.email) {
-            user.delete().then(function() {
-                firebase.database().ref('users/' + user.uid).remove();
+            firebase.database().ref('users/' + user.uid).remove().then(function() {
+                user.delete().then(function() {
                 verifyAuth();
-            }, function(error) {
-                alert(error);
+                });
             });
         }
     }).then(function() {
