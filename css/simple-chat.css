@@ -22,11 +22,22 @@ body {
     width: 50%;
 }
 
+.home-header {
+    margin-top: 5%;
+    margin-left: 10%;
+    margin-right: 10%;
+    width: 80%;
+}
+
 .login > h1, p {
     text-align: center;
 }
 
 .signup > h1, p {
+    text-align: center;
+}
+
+.home-header > h1, p {
     text-align: center;
 }
 

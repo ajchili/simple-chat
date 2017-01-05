@@ -18,7 +18,14 @@
   <link rel="icon" type="image/png" href="images/favicon.png">
 
 </head>
-<body>
+<body onload="loadHome()">
+    <div class="home-header">
+        <div class="logout">
+            <button onclick="signOut()">logout</button>
+        </div>
+        <h1>hello</h1>
+        <p>welcome back!</p>
+    </div>
     
     <script src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js"></script>
     <script src="js/firebase.js"></script>
