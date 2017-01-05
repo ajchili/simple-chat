@@ -78,7 +78,7 @@ function loadHome() {
 
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-            if (user.displayName !== "null") {
+            if (user.displayName === "") {
                 $('#welcome').text("hello " + user.displayName);
             }
         }
