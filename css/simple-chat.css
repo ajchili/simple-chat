@@ -4,15 +4,18 @@
 }
 
 body {
+    min-height: 600px !important;
     min-width: 600px;
     background-color: #03A9F4;
 }
 
 .login {
-    margin-top: 15%;
+    margin-top: 15vh;
+    margin-bottom: 15vh;
     margin-left: 25%;
     margin-right: 25%;
     width: 50%;
+    min-height: 70vh;
 }
 
 .login > h1, .login > p {
@@ -37,10 +40,12 @@ body {
 }
 
 .signup {
-    margin-top: 15%;
+    margin-top: 15vh;
+    margin-bottom: 15vh;
     margin-left: 25%;
     margin-right: 25%;
     width: 50%;
+    min-height: 70vh;
 }
 
 .signup > h1, .signup > p {
@@ -65,11 +70,12 @@ body {
 }
 
 .home-header {
-    margin-top: 5%;
-    margin-bottom: 5%;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
     margin-left: 10%;
     margin-right: 10%;
     width: 80%;
+    min-height: 10vh;
 }
 
 .home-header > h1, .home-header > p {
@@ -87,21 +93,27 @@ body {
 .home-messages {
     margin-left: 10%;
     margin-right: 10%;
+    margin-bottom: 5vh;
     width: 80%;
+    min-height: 65vh;
+    max-height: 65vh;
 }
 
 .home-messages > .messages-threads {
-    padding-right: 2.5%;
-    padding-bottom: 1%;
+    margin-bottom: 1%;
     width: 30%;
+    min-height: 65vh;
+    max-height: 65vh;
     float: left;
     background-color: aliceblue;
+    overflow: scroll;
 }
 
 .home-messages > .messages-threads > .thread > .subject {
     padding: 0;
     margin: 0;
     margin-left: 2.5%;
+    margin-right: 2.5%;
     margin-bottom: 1%;
     text-align: left;
     font-size: 1.2em;
@@ -118,9 +130,12 @@ body {
 }
 
 .home-messages > .messages-conversation {
-    width: 67.5%;
+    width: 70%;
+    min-height: 65vh;
+    max-height: 65vh;
     float: left;
     background-color: aliceblue;
+    overflow: scroll;
 }
 
 .settings-header {
