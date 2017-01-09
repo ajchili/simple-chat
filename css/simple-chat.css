@@ -120,7 +120,7 @@ body {
     overflow: hidden;
 }
 
-.home-messages > .messages-threads > .thread > p {
+.home-messages > .messages-threads > .thread > .message {
     padding: 0;
     margin: 0;
     margin-left: 2.5%;
@@ -136,6 +136,22 @@ body {
     float: left;
     background-color: #E1F5FE;
     overflow: scroll;
+}
+
+.home-messages > .messages-conversation > .sent {
+    margin: 0;
+    padding: 0;
+    margin-right: 2.5%;
+    margin-left: 2.5%;
+    text-align: right;
+}
+
+.home-messages > .messages-conversation > .recieved {
+    margin: 0;
+    padding: 0;
+    margin-right: 2.5%;
+    margin-left: 2.5%;
+    text-align: left;
 }
 
 .settings-header {
