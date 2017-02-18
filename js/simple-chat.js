@@ -85,6 +85,10 @@ function loadHome() {
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             $('#welcome').text("hello " + user.displayName);
+            // document.getElementById("messages-threads").innerHTML += "<div class=\"thread\"><p class=\"subject\">subject</p><p class=\"message\">message</p></div>";
+            ref.on("value", function(snapshot) {
+                if (snapshot.child("users").child(authData.uid).child("chats").exsist)
+            });
         }
     });
 }
