@@ -86,10 +86,15 @@ function loadHome() {
         if (user) {
             $('#welcome').text("hello " + user.displayName);
             // document.getElementById("messages-threads").innerHTML += "<div class=\"thread\"><p class=\"subject\">subject</p><p class=\"message\">message</p></div>";
-            ref.on("value", function(snapshot) {
-                if (snapshot.child("users").child(authData.uid).child("chats").exsist)
+            firebase.database().ref("users/" + user.uid + "/chats/").once('value').then(function(snapshot) {
+               snapshot.forEach(function(childSnapshot) {
+                   firebase.database().ref("chats/1234abc/messages/").once('value').then(function(snapshot) {
+                       
+                   });
+                   // document.getElementById("messages-threads").innerHTML += "<div class=\"thread\"><p class=\"subject\">" + childSnapshot.val() + "</p><p class=\"message\">message</p></div>"
+               });
             });
-        }
+        };
     });
 }
 
